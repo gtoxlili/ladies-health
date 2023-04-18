@@ -1,0 +1,38 @@
+/*贴图容器*/
+.bg-container {
+    position: fixed;
+    top: 100px;
+    left: 230px;
+    z-index: -1000;
+}
+
+.faint-glow-blue {
+    background-image: linear-gradient(180deg, #5239d0, #3e4dd8, #285ddd, #0f6bdf, #0078e0, #0087e5, #0095e8, #00a2ea, #00b5ec, #00c5df, #00d3c6, #0edda4);
+}
+
+.faint-glow-red {
+    background-image: linear-gradient(to left bottom, #6c22bd, #8b25bb, #a52bb9, #bc34b7, #d040b5, #e645a5, #f55195, #ff6188, #ff796e, #ff965b, #f5b255, #e1cd60);
+}
+
+.faint-glow-blue, .faint-glow-red {
+    transform-origin: center center;
+    width: 40vw;
+    height: 40vh;
+    filter: blur(96px);
+    opacity: .39;
+    border-radius: 20px;
+    transform: skewY(-15deg) translateY(-10%);
+}
+
+.app-container{
+    width: 100%;
+    /*background: hsla(0, 0%, 0%, 0.03);*/
+    /*border-color: hsla(0,100%,100%,.08);*/
+    /*border-width: 2px;*/
+    /*margin: 2.5rem 2.5rem 2.5rem 0;*/
+    /*backdrop-filter: blur(12px);*/
+    /*border-radius: 1.5rem;*/
+    /*background: rgba(255, 255, 255, 0.5);*/
+    padding: 1.5rem;
+    height: 100vh;
+}
