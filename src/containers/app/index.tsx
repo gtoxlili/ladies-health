@@ -68,9 +68,6 @@ const routers = createHashRouter([
                         path: 'sport',
                         element: <Sport/>,
                     }, {
-                        path: 'diet',
-                        element: <div>饮食习惯</div>,
-                    }, {
                         path: 'water',
                         element: <Water/>,
                     }

@@ -25,10 +25,6 @@ const Water = () => {
             enqueueSnackbar('饮水量不能为空', {variant: 'warning'});
             return;
         }
-        if (parseFloat(water) <= 0) {
-            enqueueSnackbar('饮水量不能小于等于0', {variant: 'warning'});
-            return;
-        }
         const res = await client.updateDrinkRecordDao(parseFloat(water));
         if (res.data.code !== 200) {
             enqueueSnackbar(res.data.message, {variant: 'warning'})
@@ -80,7 +76,7 @@ const Water = () => {
             <Typography variant="subtitle2" mb={1} ml={0.5} mt={1}>记录范围 ： </Typography><DateRangePicker
             localeText={{start: '开始日期', end: '结束日期'}}
             sx={{ml: 1, width: 320}}
-            value={dateRange}
+            value={dateRange} disableFuture
             onChange={setDateRange}
         />
         </div>
@@ -92,7 +88,7 @@ const Water = () => {
                 <Typography variant="subtitle2" mb={2}>
                     日均饮水频率：{calculateAverageCount()} 次
                 </Typography>
-                <ResponsiveContainer width="80%" height={250}>
+                <ResponsiveContainer width="80%" height={320}>
                     <LineChart
                         data={waterData}>
                         <CartesianGrid strokeDasharray="3 3"/>

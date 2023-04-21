@@ -1,140 +1,61 @@
-import React, {useState} from 'react';
+import React, {useMemo, useState} from 'react';
 import TextField from '@mui/material/TextField';
-import {Autocomplete} from "@mui/lab";
-import {Button, Divider, InputAdornment, Typography} from "@mui/material";
-import {noop} from "@lib/helper";
-import {DateRangePicker} from "@mui/x-date-pickers-pro";
-import dayjs from "dayjs";
+import {Autocomplete, Button, CircularProgress, Divider, InputAdornment, Typography} from "@mui/material";
+import {callBackSnackbar} from "@lib/helper";
+import {DateRange, DateRangePicker} from "@mui/x-date-pickers-pro";
+import dayjs, {Dayjs} from "dayjs";
+import {ExerciseRecord, useExerciseRecordService, useExerciseType} from "@service/personal";
+import {useImmer} from "use-immer";
+import {Bar, BarChart, CartesianGrid, Legend, ResponsiveContainer, Tooltip, XAxis, YAxis} from "recharts";
+import {enqueueSnackbar} from "notistack";
+import {useClient} from "@lib/hook";
 
-const top100Films = [
-    {label: 'The Shawshank Redemption', year: 1994},
-    {label: 'The Godfather', year: 1972},
-    {label: 'The Godfather: Part II', year: 1974},
-    {label: 'The Dark Knight', year: 2008},
-    {label: '12 Angry Men', year: 1957},
-    {label: "Schindler's List", year: 1993},
-    {label: 'Pulp Fiction', year: 1994},
-    {
-        label: 'The Lord of the Rings: The Return of the King',
-        year: 2003,
-    },
-    {label: 'The Good, the Bad and the Ugly', year: 1966},
-    {label: 'Fight Club', year: 1999},
-    {
-        label: 'The Lord of the Rings: The Fellowship of the Ring',
-        year: 2001,
-    },
-    {
-        label: 'Star Wars: Episode V - The Empire Strikes Back',
-        year: 1980,
-    },
-    {label: 'Forrest Gump', year: 1994},
-    {label: 'Inception', year: 2010},
-    {
-        label: 'The Lord of the Rings: The Two Towers',
-        year: 2002,
-    },
-    {label: "One Flew Over the Cuckoo's Nest", year: 1975},
-    {label: 'Goodfellas', year: 1990},
-    {label: 'The Matrix', year: 1999},
-    {label: 'Seven Samurai', year: 1954},
-    {
-        label: 'Star Wars: Episode IV - A New Hope',
-        year: 1977,
-    },
-    {label: 'City of God', year: 2002},
-    {label: 'Se7en', year: 1995},
-    {label: 'The Silence of the Lambs', year: 1991},
-    {label: "It's a Wonderful Life", year: 1946},
-    {label: 'Life Is Beautiful', year: 1997},
-    {label: 'The Usual Suspects', year: 1995},
-    {label: 'Léon: The Professional', year: 1994},
-    {label: 'Spirited Away', year: 2001},
-    {label: 'Saving Private Ryan', year: 1998},
-    {label: 'Once Upon a Time in the West', year: 1968},
-    {label: 'American History X', year: 1998},
-    {label: 'Interstellar', year: 2014},
-    {label: 'Casablanca', year: 1942},
-    {label: 'City Lights', year: 1931},
-    {label: 'Psycho', year: 1960},
-    {label: 'The Green Mile', year: 1999},
-    {label: 'The Intouchables', year: 2011},
-    {label: 'Modern Times', year: 1936},
-    {label: 'Raiders of the Lost Ark', year: 1981},
-    {label: 'Rear Window', year: 1954},
-    {label: 'The Pianist', year: 2002},
-    {label: 'The Departed', year: 2006},
-    {label: 'Terminator 2: Judgment Day', year: 1991},
-    {label: 'Back to the Future', year: 1985},
-    {label: 'Whiplash', year: 2014},
-    {label: 'Gladiator', year: 2000},
-    {label: 'Memento', year: 2000},
-    {label: 'The Prestige', year: 2006},
-    {label: 'The Lion King', year: 1994},
-    {label: 'Apocalypse Now', year: 1979},
-    {label: 'Alien', year: 1979},
-    {label: 'Sunset Boulevard', year: 1950},
-    {
-        label: 'Dr. Strangelove or: How I Learned to Stop Worrying and Love the Bomb',
-        year: 1964,
-    },
-    {label: 'The Great Dictator', year: 1940},
-    {label: 'Cinema Paradiso', year: 1988},
-    {label: 'The Lives of Others', year: 2006},
-    {label: 'Grave of the Fireflies', year: 1988},
-    {label: 'Paths of Glory', year: 1957},
-    {label: 'Django Unchained', year: 2012},
-    {label: 'The Shining', year: 1980},
-    {label: 'WALL·E', year: 2008},
-    {label: 'American Beauty', year: 1999},
-    {label: 'The Dark Knight Rises', year: 2012},
-    {label: 'Princess Mononoke', year: 1997},
-    {label: 'Aliens', year: 1986},
-    {label: 'Oldboy', year: 2003},
-    {label: 'Once Upon a Time in America', year: 1984},
-    {label: 'Witness for the Prosecution', year: 1957},
-    {label: 'Das Boot', year: 1981},
-    {label: 'Citizen Kane', year: 1941},
-    {label: 'North by Northwest', year: 1959},
-    {label: 'Vertigo', year: 1958},
-    {
-        label: 'Star Wars: Episode VI - Return of the Jedi',
-        year: 1983,
-    },
-    {label: 'Reservoir Dogs', year: 1992},
-    {label: 'Braveheart', year: 1995},
-    {label: 'M', year: 1931},
-    {label: 'Requiem for a Dream', year: 2000},
-    {label: 'Amélie', year: 2001},
-    {label: 'A Clockwork Orange', year: 1971},
-    {label: 'Like Stars on Earth', year: 2007},
-    {label: 'Taxi Driver', year: 1976},
-    {label: 'Lawrence of Arabia', year: 1962},
-    {label: 'Double Indemnity', year: 1944},
-    {
-        label: 'Eternal Sunshine of the Spotless Mind',
-        year: 2004,
-    },
-    {label: 'Amadeus', year: 1984},
-    {label: 'To Kill a Mockingbird', year: 1962},
-    {label: 'Toy Story 3', year: 2010},
-    {label: 'Logan', year: 2017},
-    {label: 'Full Metal Jacket', year: 1987},
-    {label: 'Dangal', year: 2016},
-    {label: 'The Sting', year: 1973},
-    {label: '2001: A Space Odyssey', year: 1968},
-    {label: "Singin' in the Rain", year: 1952},
-    {label: 'Toy Story', year: 1995},
-    {label: 'Bicycle Thieves', year: 1948},
-    {label: 'The Kid', year: 1921},
-    {label: 'Inglourious Basterds', year: 2009},
-    {label: 'Snatch', year: 2000},
-    {label: '3 Idiots', year: 2009},
-    {label: 'Monty Python and the Holy Grail', year: 1975},
-];
+
 const Sport = () => {
-    const [sport, setSport] = useState(0)
-    const [sportData, setSportData] = useState<{ date: string, sport: number, count: number }[]>([])
+
+    // 范围日期
+    const [dateRange, setDateRange] = useState<DateRange<Dayjs>>([dayjs().subtract(7, 'day'), dayjs()]);
+    const [sport, setSport] = useImmer<ExerciseRecord>({})
+    const [sportData, mutateSportData] = useExerciseRecordService(dateRange)
+
+    const [exerciseTypes, addTypes, loading] = useExerciseType()
+    const client = useClient();
+
+    const addSportEntry = async () => {
+        if (!sport.exerciseType) {
+            enqueueSnackbar('运动类型不能为空', {variant: 'warning'});
+            return;
+        }
+        if (!sport.exerciseDuration) {
+            enqueueSnackbar('运动时长不能为空', {variant: 'warning'});
+            return;
+        }
+        const res = await client.updateExerciseRecordDao(sport.exerciseType, sport.exerciseDuration);
+        if (res.data.code !== 200) {
+            enqueueSnackbar(res.data.message, {variant: 'warning'})
+            return
+        } else {
+            callBackSnackbar(res.data.data, mutateSportData)
+        }
+        mutateSportData()
+        addTypes(sport.exerciseType)
+        setSport(draft => {
+            draft.exerciseType = ''
+            draft.exerciseDuration = 0
+        })
+    }
+
+    const averageSport = useMemo(
+        () => {
+            if (sportData.length === 0) return 0;
+            const totalHours = sportData.reduce((acc, entry) => {
+                // 将 Entry ：Record<string, string> 所有 value 加起来,另外 排除 key 为 recordTime 的一项
+                return acc + Object.values(entry).filter(value => value !== entry['recordTime']).reduce((acc, value) => acc + parseFloat(value), 0)
+            }, 0);
+            return (totalHours / sportData.length).toFixed(2)
+        }
+        , [sportData])
+
 
     return <>
         <Typography variant="subtitle2" mb={2} ml={0.5}>
@@ -144,23 +65,46 @@ const Sport = () => {
         grid-cols-3
         gap-x-8 gap-y-2'>
             <Autocomplete
+                loading={loading}
                 freeSolo
                 disablePortal
-                options={top100Films}
+                options={exerciseTypes}
                 size="small"
+                inputValue={sport.exerciseType || ''}
+                onInputChange={(_, niv) => {
+                    setSport(draft => {
+                        draft.exerciseType = niv
+                    })
+                }}
                 renderInput={(params) =>
-                    <TextField {...params} label="运动类型"/>
+                    <TextField {...params} label="运动类型"
+                               InputProps={{
+                                   ...params.InputProps,
+                                   endAdornment: (
+                                       <>
+                                           {loading ? <CircularProgress color="inherit" size={20}/> : null}
+                                           {params.InputProps.endAdornment}
+                                       </>
+                                   ),
+                               }}
+                    />
                 }
             />
             <TextField
                 label="运动时长"
                 type="number"
+                value={sport.exerciseDuration || ''}
+                onChange={e => {
+                    setSport(draft => {
+                        draft.exerciseDuration = parseFloat(e.target.value)
+                    })
+                }}
                 InputProps={{
                     endAdornment: <InputAdornment position="end">h</InputAdornment>,
                 }}
                 size="small"
             />
-            <Button variant="contained" color="primary" onClick={noop} sx={{width:64}}>
+            <Button variant="contained" color="primary" onClick={addSportEntry} sx={{width: 64}}>
                 提交
             </Button>
         </div>
@@ -170,12 +114,45 @@ const Sport = () => {
             提要
         </Typography>
         <div className="flex flex-row justify-start items-center">
-            <Typography variant="subtitle2" mb={1} ml={0.5} mt={1}>记录范围 ： </Typography><DateRangePicker
-            localeText={{start: '开始日期', end: '结束日期'}}
-            sx={{ml: 1, width: 320}}
-            defaultValue={[dayjs().subtract(1, 'month'), dayjs()]}
-        />
+            <Typography variant="subtitle2" mb={1} ml={0.5} mt={1}>记录范围 ： </Typography>
+            <DateRangePicker
+                localeText={{start: '开始日期', end: '结束日期'}}
+                sx={{ml: 1, width: 320}}
+                value={dateRange}
+                onChange={setDateRange}
+                disableFuture
+            />
         </div>
+        {
+            sportData.length > 0 && (<>
+                <Typography variant="subtitle2" mt={2} mb={2}>
+                    日均运动量：{averageSport} h
+                </Typography>
+                <ResponsiveContainer width="80%" height={320}>
+                    <BarChart
+                        data={sportData}
+                    >
+                        <CartesianGrid strokeDasharray="3 3"/>
+                        <XAxis dataKey="recordTime"/>
+                        <YAxis/>
+                        <Tooltip/>
+                        <Legend/>
+                        {
+                            exerciseTypes.map((type, _) => {
+                                return <Bar
+                                    dataKey={type.label}
+                                    stackId='exercise'
+                                    key={type.label}
+                                    fill={type.color}
+                                    animationDuration={300}
+                                    maxBarSize={30}
+                                />
+                            })
+                        }
+                    </BarChart>
+                </ResponsiveContainer>
+            </>)
+        }
 
     </>
 };

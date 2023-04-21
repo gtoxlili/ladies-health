@@ -23,10 +23,6 @@ const SleepTracker = () => {
             enqueueSnackbar('睡眠时长不得为空', {variant: 'warning'});
             return;
         }
-        if (parseFloat(sleepHours) <= 0) {
-            enqueueSnackbar('睡眠时长不得小于等于0', {variant: 'warning'});
-            return;
-        }
         const res = await client.updateSleepRecordDao(parseFloat(sleepHours));
         if (res.data.code !== 200) {
             enqueueSnackbar(res.data.message, {variant: 'warning'})
@@ -69,19 +65,22 @@ const SleepTracker = () => {
             提要
         </Typography>
         <div className="flex flex-row justify-start items-center">
-            <Typography variant="subtitle2" mb={1} ml={0.5} mt={1}>记录范围 ： </Typography><DateRangePicker
-            localeText={{start: '开始日期', end: '结束日期'}}
-            sx={{ml: 1, width: 320}}
-            value={dateRange}
-            onChange={setDateRange}
-        />
+            <Typography variant="subtitle2" mb={1} ml={0.5} mt={1}>记录范围 ：
+            </Typography>
+            <DateRangePicker
+                localeText={{start: '开始日期', end: '结束日期'}}
+                sx={{ml: 1, width: 320}}
+                value={dateRange}
+                onChange={setDateRange}
+                disableFuture
+            />
         </div>
         {
             sleepData.length > 0 && (<>
                     <Typography variant="subtitle2" mt={2} mb={2}>
                         平均睡眠时长：{calculateAverageSleep()} 小时
                     </Typography>
-                    <ResponsiveContainer width="80%" height={250}>
+                    <ResponsiveContainer width="80%" height={320}>
                         <LineChart
                             data={sleepData}>
                             <CartesianGrid strokeDasharray="3 3"/>

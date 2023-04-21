@@ -1,7 +1,6 @@
 import axios, {AxiosInstance} from 'axios'
 import {LoginParams} from "@service/auth";
-import {BasicSign} from "@service/personal";
-import dayjs, {Dayjs} from "dayjs";
+import {BasicSign, MenstruationRecord, MenstruationVO} from "@service/personal";
 
 export interface Res<T> {
     code: number
@@ -87,5 +86,34 @@ export class Client {
 
     async updateDrinkRecordDao(duration: number) {
         return await this.axiosClient.patch<Res<OperateVO>>(`personal/drinkRecord?volume=${duration}`)
+    }
+
+    async getExerciseTypeDao() {
+        return await this.axiosClient.get<Res<string[]>>(`personal/exerciseType`)
+    }
+
+    async getExerciseRecordDao(startTime: string, endTime: string) {
+        return await this.axiosClient.get<Res<Record<string, string>[]>>(`personal/exerciseRecord?startTime=${startTime}&endTime=${endTime}`)
+    }
+
+    async updateExerciseRecordDao(type: string, duration: number) {
+        return await this.axiosClient.patch<Res<OperateVO>>(`personal/exerciseRecord?type=${type}&duration=${duration}`)
+    }
+
+    async addMenstruationRecordDao(dto: MenstruationRecord & {
+        startTime: string
+        endTime: string
+    }) {
+        return await this.axiosClient.post<Res<OperateVO>>(`personal/menstruationRecord`, dto)
+    }
+
+    // personal/menstruationCycle/predict
+    async predictMenstruationCycleDao() {
+        return await this.axiosClient.get<Res<[Date, Date]>>(`personal/menstruationCycle/predict`)
+    }
+
+    // /personal/menstruationReport
+    async getMenstruationReportDao() {
+        return await this.axiosClient.get<Res<MenstruationVO>>(`personal/menstruationReport`)
     }
 }

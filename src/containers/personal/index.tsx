@@ -160,10 +160,6 @@ const recordRouter = [
         link: '/personal/sport'
     },
     {
-        title: '饮食习惯',
-        link: '/personal/diet'
-    },
-    {
         title: '饮水记录',
         link: '/personal/water'
     }
