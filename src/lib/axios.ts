@@ -2,6 +2,7 @@ import axios, {AxiosInstance} from 'axios'
 import {LoginParams} from "@service/auth";
 import {BasicSign, MenstruationRecord, MenstruationVO} from "@service/personal";
 import {DiseaseVO, InquiryRecord, InquiryTopicsVO} from "@service/inquiry";
+import {config} from "@config";
 
 export interface Res<T> {
     code: number
@@ -23,7 +24,7 @@ export class Client {
             Authorization: token
         }
         this.axiosClient = axios.create({
-            baseURL: 'https://ladie-rearend.gtio.work',
+            baseURL: config.baseUrl,
             headers: headers,
         })
     }

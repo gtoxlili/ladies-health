@@ -2,6 +2,7 @@ import {useClient} from "@lib/hook";
 import {useDeferredValue, useLayoutEffect, useMemo, useRef, useState} from "react";
 import useSWR from "swr";
 import {enqueueSnackbar} from "notistack";
+import {config} from "@config";
 
 export interface InquiryRecord {
     role: 'assistant' | 'user'
@@ -45,7 +46,7 @@ export function useInquiryReader(
     useLayoutEffect(() => {
         if (!id) return
         setValue("")
-        const source = new EventSource(`https://ladie-rearend.gtio.work/inquiry/completions/${id}`)
+        const source = new EventSource(`${config.baseUrl}/inquiry/completions/${id}`)
         source.onmessage = (event) => setValue(value => value + event.data)
         // @ts-ignore
         source.onerror = (event: Event & { data: string }) => {
