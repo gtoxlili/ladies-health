@@ -80,7 +80,7 @@ const SleepTracker = () => {
                     <Typography variant="subtitle2" mt={2} mb={2}>
                         平均睡眠时长：{calculateAverageSleep()} 小时
                     </Typography>
-                    <ResponsiveContainer width="80%" height={320}>
+                    <ResponsiveContainer width="80%" height='60%' minWidth={320}>
                         <LineChart
                             data={sleepData}>
                             <CartesianGrid strokeDasharray="3 3"/>

@@ -128,7 +128,7 @@ const Sport = () => {
                 <Typography variant="subtitle2" mt={2} mb={2}>
                     日均运动量：{averageSport} h
                 </Typography>
-                <ResponsiveContainer width="80%" height={320}>
+                <ResponsiveContainer width="80%" height='60%' minWidth={320}>
                     <BarChart
                         data={sportData}
                     >

@@ -283,7 +283,7 @@ const Menstrual = () => {
                 <Typography variant="subtitle2">
                     过去一年内月经周期
                 </Typography>
-                <ResponsiveContainer width="60%" height="40%" minWidth={320}>
+                <ResponsiveContainer width="80%" height="40%" minWidth={320}>
                     <BarChart
                         data={recordData.days}
                     >

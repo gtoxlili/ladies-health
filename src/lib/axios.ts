@@ -1,6 +1,7 @@
 import axios, {AxiosInstance} from 'axios'
 import {LoginParams} from "@service/auth";
 import {BasicSign, MenstruationRecord, MenstruationVO} from "@service/personal";
+import {DiseaseVO, InquiryRecord, InquiryTopicsVO} from "@service/inquiry";
 
 export interface Res<T> {
     code: number
@@ -115,5 +116,32 @@ export class Client {
     // /personal/menstruationReport
     async getMenstruationReportDao() {
         return await this.axiosClient.get<Res<MenstruationVO>>(`personal/menstruationReport`)
+    }
+
+    // /inquiry/register
+    async registerInquiryDao(msg: string, topicId?: string) {
+        return await this.axiosClient.post<Res<string>>(`inquiry/register/${topicId ? topicId : ''}`, {
+            message: msg
+        })
+    }
+
+    // /inquiry/records/{topicId}
+    async getInquiryRecordsDao(topicId: string) {
+        return await this.axiosClient.get<Res<InquiryRecord[]>>(`inquiry/records/${topicId}`)
+    }
+
+    // diseases/{topicId}
+    async getDiseasesDao(topicId: string) {
+        return await this.axiosClient.get<Res<DiseaseVO[]>>(`inquiry/diseases/${topicId}`)
+    }
+
+    // topics
+    async getTopicsDao() {
+        return await this.axiosClient.get<Res<InquiryTopicsVO[]>>(`inquiry/topics`)
+    }
+
+    // @DeleteMapping(value = "topics/{topicId}")
+    async deleteTopicDao(topicId: string) {
+        return await this.axiosClient.delete<Res<OperateVO>>(`inquiry/topics/${topicId}`)
     }
 }

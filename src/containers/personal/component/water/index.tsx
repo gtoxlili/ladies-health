@@ -88,7 +88,7 @@ const Water = () => {
                 <Typography variant="subtitle2" mb={2}>
                     日均饮水频率：{calculateAverageCount()} 次
                 </Typography>
-                <ResponsiveContainer width="80%" height={320}>
+                <ResponsiveContainer width="80%" height='60%' minWidth={320}>
                     <LineChart
                         data={waterData}>
                         <CartesianGrid strokeDasharray="3 3"/>

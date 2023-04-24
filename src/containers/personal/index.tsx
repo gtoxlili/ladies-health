@@ -185,13 +185,13 @@ const Record = () => {
                 ))}
             </List>
         </div>
-        <div className='bg-neutral-50/60 shadow-md rounded-md flex-1 relative overflow-y-auto'>
+        <div className='bg-neutral-50/60 shadow-md rounded-md flex-1 relative'>
             <Suspense
-                fallback={<div className='h-screen flex justify-center items-center'>
+                fallback={<div className='absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2'>
                     <CircularProgress size='3rem'/>
                 </div>}
             >
-                <div className='absolute top-0 left-0 b-0 r-0 p-8 w-full'>
+                <div className='absolute top-0 left-0 bottom-0 right-0 p-8 w-full overflow-y-auto'>
                     <LocalizationProvider
                         adapterLocale="zh-cn"
                         dateAdapter={AdapterDayjs}>

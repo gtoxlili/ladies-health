@@ -8,9 +8,10 @@ import './style.css'
 import Sidebar from "@containers/sidebar";
 import {CircularProgress} from "@mui/material";
 
-
+const Home = lazy(() => import('@containers/home'))
 const Auth = lazy(() => import('@containers/auth'))
 const Personal = lazy(() => import('@containers/personal'))
+const Inquiry = lazy(() => import('@containers/inquiry'))
 
 // 个人体征子路由
 const Menstrual = lazy(() => import('@containers/personal/component/menstrual'))
@@ -48,7 +49,7 @@ const routers = createHashRouter([
         children: [
             {
                 index: true,
-                element: <div>首页</div>,
+                element: <Home/>,
             },
             // 个人体征
             {
@@ -76,18 +77,12 @@ const routers = createHashRouter([
             // 问诊记录
             {
                 path: "/inquiry",
-                element: <div>问诊记录</div>,
+                element: <Inquiry/>,
             },
             // 社区交流
             {
                 path: "/community",
-                element: <div>社区交流<Outlet/></div>,
-                children: [
-                    {
-                        index: true,
-                        element: <div>社区交流aaa</div>,
-                    }
-                ]
+                element: <div>Come Soon</div>,
             }
         ]
     },
