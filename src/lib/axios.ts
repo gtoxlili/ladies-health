@@ -23,7 +23,7 @@ export class Client {
             Authorization: token
         }
         this.axiosClient = axios.create({
-            baseURL: '/api',
+            baseURL: 'https://ladie-rearend.gtio.work',
             headers: headers,
         })
     }

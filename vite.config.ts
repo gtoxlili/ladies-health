@@ -5,7 +5,7 @@ import jotaiReactRefresh from "jotai/babel/plugin-react-refresh";
 import tsConfigPath from "vite-tsconfig-paths";
 import {VitePWA} from "vite-plugin-pwa";
 import UnoCSS from 'unocss/vite'
-import {presetAttributify, presetWind} from "unocss";
+import {presetWind} from "unocss";
 
 // https://vitejs.dev/config/
 export default defineConfig((env) => {
@@ -26,13 +26,13 @@ export default defineConfig((env) => {
                 manifest: {
                     icons: [{
                         src:
-                            "//cdn.jsdelivr.net/gh/gtoxlili/advice-hub/frontend/src/assets/logo.png",
+                            "//cdn.jsdelivr.net/gh/gtoxlili/give-advice/frontend/src/assets/logo.png",
                         sizes: "128x128",
                         type: "image/png",
                     }],
                     start_url: "/",
-                    short_name: "AdviceHub",
-                    name: "AdviceHub",
+                    short_name: "WoMen",
+                    name: "WoMen",
                     theme_color: "#ffffff",
                 },
             }),
@@ -42,10 +42,9 @@ export default defineConfig((env) => {
                 host: "0.0.0.0",
                 port: 3000,
                 proxy: {
-                    "/api": {
+                    "/": {
                         target: "http://localhost:16807",
                         changeOrigin: true,
-                        rewrite: (path) => path.replace(/^\/api/, ""),
                     },
                 },
             }

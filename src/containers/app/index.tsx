@@ -1,6 +1,6 @@
 import React, {lazy, Suspense, useEffect} from "react";
 import "@styles/common.css";
-import {createHashRouter, Navigate, Outlet, RouterProvider, useNavigate} from "react-router-dom";
+import {createBrowserRouter, Navigate, Outlet, RouterProvider, useNavigate} from "react-router-dom";
 
 import {useCheckAuth} from "@service";
 import {enqueueSnackbar} from "notistack";
@@ -42,7 +42,7 @@ const Index = () => {
     </div>
 }
 
-const routers = createHashRouter([
+const routers = createBrowserRouter([
     {
         path: "/",
         element: <Index/>,
