@@ -45,7 +45,7 @@ export function useInquiryReader(
     useLayoutEffect(() => {
         if (!id) return
         setValue("")
-        const source = new EventSource(`/api/inquiry/completions/${id}`)
+        const source = new EventSource(`https://ladie-rearend.gtio.work/inquiry/completions/${id}`)
         source.onmessage = (event) => setValue(value => value + event.data)
         // @ts-ignore
         source.onerror = (event: Event & { data: string }) => {
