@@ -33,7 +33,8 @@ export const useLoginService = () => {
             username: res.data.data.username,
         })
         enqueueSnackbar('登录成功 | 跳转至主页', {variant: 'success'})
-        navigate('/', {replace: true})
+        // 等待 client 重新初始化完成
+        setTimeout(() => navigate('/', {replace: true}), 0)
     }
     return {handler, loading}
 }
