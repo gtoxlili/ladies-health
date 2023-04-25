@@ -1,3 +1,4 @@
 export const config = {
-    baseUrl: "https://ladie-rearend.gtio.work/",
+    // @ts-ignore
+    baseUrl: import.meta.env.DEV ? "/api/" : "https://ladie-rearend.gtio.work/",
 }
