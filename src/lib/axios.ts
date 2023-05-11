@@ -22,12 +22,12 @@ export interface healthyPageParam{
 export interface healthyParam{
     fid?:string,
     fuserId?:string ,
-    theme?:string,  
+    theme?:string,
     reminderTimeStart?:any | null,
     reminderTimeEnd?:any | null,
     type?: number,
     hdesc?: string,
-    statuc?: number 
+    statuc?: number
 }
 
 
@@ -182,7 +182,7 @@ export class Client {
         return await this.axiosClient.post('healthy/update',param);
     }
 
-    async getCount ( ){
+    async getHealtyCount ( ){
         return await this.axiosClient.get(`healthy/getCount`);
     }
 

@@ -2,24 +2,24 @@ import React, {lazy, Suspense, useEffect} from "react";
 import "@styles/common.css";
 import {createBrowserRouter, Navigate, Outlet, RouterProvider, useNavigate} from "react-router-dom";
 
-import {useCheckAuth} from "@service";
+import {useCheckAuth, useHealthReminder} from "@service";
 import {enqueueSnackbar} from "notistack";
 import './style.css'
 import Sidebar from "@containers/sidebar";
 import {CircularProgress} from "@mui/material";
-import {useClient} from "@lib/hook";
 
 const Home = lazy(() => import('@containers/home'))
 const Auth = lazy(() => import('@containers/auth'))
 const Personal = lazy(() => import('@containers/personal'))
 const Inquiry = lazy(() => import('@containers/inquiry'))
-const Healty  = lazy(() => import('@containers/healty'))
+const Healty = lazy(() => import('@containers/healty'))
 
 // 个人体征子路由
 const Menstrual = lazy(() => import('@containers/personal/component/menstrual'))
 const Sleep = lazy(() => import('@containers/personal/component/sleep'))
 const Sport = lazy(() => import('@containers/personal/component/sport'))
 const Water = lazy(() => import('@containers/personal/component/water'))
+
 // 提醒管理子路由
 const HealtyManage = lazy(() => import('@containers/healty/component/manage'))
 const HealtyAdd = lazy(() => import('@containers/healty/hedalthyAdd'))
@@ -37,30 +37,9 @@ const Index = () => {
             navigate('/login', {replace: true})
         }
     }, [error])
-   
-   // 健康提醒增加
-    useEffect(()=>{
 
-        const fetchData = async () => {
-            // console.log('fetchData...' ,123)
-            client.getCount().then((res:any) =>{
-                let code =res.data.code ;
-                if(code !== 200){
-                    return;
-                }
-                if(res.data.data == 0){
-                    return ;
-                }
-                enqueueSnackbar(`您有${res.data.data}待处理, 请您到【健康管理/待办】查阅`, {variant: 'success'})
-            })
-        }
-
-        const intervalId = setInterval(() => {
-            fetchData();
-        }, 10000);  
-
-        return () => clearInterval(intervalId);
-    },[error])
+    // 健康提醒增加
+    useHealthReminder(error);
 
     return <div className='flex'>
         <Sidebar/>
@@ -116,13 +95,10 @@ const routers = createBrowserRouter([
             {
                 path: "/community",
                 element: <div>Come Soon</div>,
-            }
-        ]
-    },
-     //健康提醒
+            },    //健康提醒
             {
                 path: "/helathy",
-                element: <Healty />,
+                element: <Healty/>,
                 children: [
                     {
                         index: true,
@@ -136,7 +112,7 @@ const routers = createBrowserRouter([
                     }, {
                         path: 'finish',
                         element: <HealFinish/>,
-                    }, 
+                    },
                     {
                         path: 'add',
                         element: <HealtyAdd/>,
@@ -151,6 +127,8 @@ const routers = createBrowserRouter([
                     }
                 ]
             },
+        ]
+    },
     {
         path: "/login",
         element: <Auth/>,

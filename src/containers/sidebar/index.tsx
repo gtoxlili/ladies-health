@@ -11,7 +11,7 @@ import ForumIcon from '@mui/icons-material/Forum';
 import {userAtom} from "@stores/jotai";
 import {useAtomValue} from "jotai";
 import {useNavigate} from "react-router-dom";
-import AddAlertIcon from '@mui/icons-material//AddAlert';
+import AddAlertIcon from '@mui/icons-material/AddAlert';
 
 const sidebarItems = [
     {
@@ -33,7 +33,7 @@ const sidebarItems = [
         Icon: <ForumIcon/>,
         title: "社区交流",
         link: "/community"
-    }
+    },
     {
         Icon: <AddAlertIcon/>,
         title: "健康提醒",
