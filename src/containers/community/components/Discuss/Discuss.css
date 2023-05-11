@@ -1,0 +1,17 @@
+.c2Modal {
+    position: relative;
+}
+
+.c2footerBtn {
+    bottom: 0px;
+    margin-top: 80px;
+    display: flex;
+    justify-content: space-between;
+    flex-direction: row-reverse;
+}
+
+.c2footerBtn > div:nth-child(2) > img {
+    width: 30px;
+    height: 30px;
+    margin-right: 10px;
+}

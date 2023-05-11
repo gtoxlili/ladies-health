@@ -1,0 +1,156 @@
+
+.c1Comment > .character {
+    display: flex;
+    align-items: center;
+}
+
+.c1Comment > .character > img {
+    width: 40px;
+    height: 40px;
+    margin-right: 10px;
+}
+
+.c1Comment > .character > .message {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+}
+
+.c1Comment > .character > .message > span {
+    /** 文本1 */
+    font-size: 20px;
+    font-weight: 400;
+    letter-spacing: 0px;
+    line-height: 28.96px;
+    color: rgba(0, 0, 0, 1);
+    text-align: left;
+    vertical-align: top;
+}
+
+.c1Comment > .article {
+    margin-top: 15px;
+    margin-bottom: 15px;
+    margin-left: 50px;
+
+}
+
+.c1Comment > .article > img {
+    width: 247px;
+    height: 186px;
+    margin-top: 20px;
+    display: block;
+}
+
+.c1Comment > .article > span:nth-child(1) {
+    font-size: 20px;
+    font-weight: 400;
+    letter-spacing: 0px;
+    line-height: 28.96px;
+    color: rgba(0, 0, 0, 1);
+    text-align: left;
+    vertical-align: top;
+}
+
+.c1Comment > .article > span:nth-child(2) {
+    font-size: 20px;
+    font-weight: 400;
+    letter-spacing: 0px;
+    line-height: 22px;
+    color: rgba(24, 144, 255, 1);
+    text-align: center;
+    vertical-align: top;
+}
+
+.c1Comment > .Action {
+    margin-bottom: 15px;
+    margin-left: 50px;
+    width: 100px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.c1Comment > .Action > img {
+    width: 20px;
+    height: 20px;
+}
+
+.c1Comment > span {
+    font-size: 16px;
+    font-weight: 400;
+    letter-spacing: 0px;
+    line-height: 23.17px;
+    color: rgba(42, 130, 228, 1);
+    text-align: center;
+    vertical-align: top;
+    margin-left: 50px;
+    margin-bottom: 20px;
+}
+
+.c1Comment::after {
+    display: block;
+    content: "";
+    border-bottom: 1px solid rgba(204, 204, 204, 1);
+    width: 92%;
+    margin: 0 auto;
+    margin-top: 20px;
+}
+
+.c1hand {
+    cursor: pointer;
+}
+
+.c1More {
+    margin-left: 80px;
+    margin-top: 10px;
+}
+
+.c1More > .top {
+    display: flex;
+}
+
+.c1More > .top > img {
+    margin-right: 12px;
+    width: 32px;
+    height: 32px;
+}
+
+.c1More > .top > .nameTime > .name {
+    /** 文本1 */
+    font-size: 16px;
+    font-weight: 400;
+    letter-spacing: 0px;
+    line-height: 23.17px;
+    color: rgba(0, 0, 0, 1);
+
+
+}
+
+.c1More > .top > .nameTime > .time {
+    font-size: 12px;
+    font-weight: 400;
+    letter-spacing: 0px;
+    line-height: 17.38px;
+    color: rgba(0, 0, 0, 1);
+}
+
+.c1More > .moreComments {
+    font-size: 14px;
+    font-weight: 400;
+    letter-spacing: 0px;
+    line-height: 20.27px;
+    color: rgba(0, 0, 0, 1);
+    margin-left: 43px;
+    margin-top: 10px;
+}
+
+.c1Putaway {
+    text-align: right;
+    width: 80%;
+
+    /** 文本1 */
+    font-size: 16px;
+    font-weight: 400;
+    letter-spacing: 0px;
+    line-height: 23.17px;
+    color: rgba(42, 130, 228, 1);
+}

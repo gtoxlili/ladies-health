@@ -1,0 +1,87 @@
+.c2Modal {
+    position: relative;
+}
+
+.c2footerBtn {
+    bottom: 0px;
+    margin-top: 80px;
+    display: flex;
+    justify-content: space-between;
+    flex-direction: row-reverse;
+}
+
+.c2footerBtn > div:nth-child(2) > img {
+    width: 30px;
+    height: 30px;
+    margin-right: 10px;
+}
+
+.c3line {
+    height: 1px;
+    border-bottom: 1px solid rgba(166, 166, 166, 0.36);
+    margin-bottom: 20px;
+}
+
+.c3list {
+    display: flex;
+    margin-top: 20px;
+    padding-bottom: 20px;
+    border-bottom: 1px solid rgba(166, 166, 166, 0.36);
+    justify-content: space-between;
+    align-items: center;
+}
+
+.c3list > .content {
+    display: flex;
+}
+
+.c3list > .content > img {
+    width: 60px;
+    height: 60px;
+    margin-right: 10px;
+}
+
+.c3list > .content > div > .text {
+    font-size: 14px;
+    font-weight: 600;
+    letter-spacing: 0px;
+    line-height: 19.6px;
+    color: rgba(0, 0, 0, 1);
+    text-align: left;
+}
+
+.c3list > .content > div > div {
+    display: flex;
+    /*justify-content: center;*/
+    align-items: center;
+}
+
+.c3list > .content > div > div > img {
+    width: 12px;
+    height: 12px;
+    margin-right: 3px;
+}
+
+.c3list > .content > div > div > span {
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 0px;
+    line-height: 16.8px;
+    color: rgba(219, 55, 55, 1);
+    text-align: left;
+    vertical-align: top;
+}
+
+.c3bottom {
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 0px;
+    line-height: 16.8px;
+    color: rgba(0, 0, 0, 0.35);
+    text-align: left;
+    vertical-align: top;
+}
+
+.c3btn {
+    display: flex;
+}

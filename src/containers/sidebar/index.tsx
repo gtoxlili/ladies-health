@@ -32,7 +32,7 @@ const sidebarItems = [
     {
         Icon: <ForumIcon/>,
         title: "社区交流",
-        link: "/community"
+        link: "/index"
     },
     {
         Icon: <AddAlertIcon/>,

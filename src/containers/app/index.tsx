@@ -12,7 +12,7 @@ const Home = lazy(() => import('@containers/home'))
 const Auth = lazy(() => import('@containers/auth'))
 const Personal = lazy(() => import('@containers/personal'))
 const Inquiry = lazy(() => import('@containers/inquiry'))
-const Healty = lazy(() => import('@containers/healty'))
+const Healty = lazy(() => import('src/containers/reminder'))
 
 // 个人体征子路由
 const Menstrual = lazy(() => import('@containers/personal/component/menstrual'))
@@ -21,11 +21,14 @@ const Sport = lazy(() => import('@containers/personal/component/sport'))
 const Water = lazy(() => import('@containers/personal/component/water'))
 
 // 提醒管理子路由
-const HealtyManage = lazy(() => import('@containers/healty/component/manage'))
-const HealtyAdd = lazy(() => import('@containers/healty/hedalthyAdd'))
-const HealTodo = lazy(() => import('@containers/healty/component/todo'))
-const HealFinish = lazy(() => import('@containers/healty/component/finish'))
-const HealthDetail = lazy(() => import('@containers/healty/healthyDetail'))
+const HealtyManage = lazy(() => import('@containers/reminder/component/manage'))
+const HealtyAdd = lazy(() => import('@containers/reminder/hedalthyAdd'))
+const HealTodo = lazy(() => import('@containers/reminder/component/todo'))
+const HealFinish = lazy(() => import('@containers/reminder/component/finish'))
+const HealthDetail = lazy(() => import('@containers/reminder/healthyDetail'))
+
+// 懒加载交流模块
+const Community = lazy(() => import('@containers/community'))
 
 
 const Index = () => {
@@ -93,8 +96,8 @@ const routers = createBrowserRouter([
             },
             // 社区交流
             {
-                path: "/community",
-                element: <div>Come Soon</div>,
+                path: "/index",
+                element: <Community/>,
             },    //健康提醒
             {
                 path: "/helathy",

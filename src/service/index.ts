@@ -24,7 +24,7 @@ export const useHealthReminder = (error: Error) => {
         ["reminder", error, client], async ([_, error, client]) => {
             if (error) return
             const res = await client.getHealtyCount()
-            if (res.data.code === 200) {
+            if (res.data.code === 200 && res.data.data > 0) {
                 enqueueSnackbar(`您有${res.data.data}待处理, 请您到【健康管理/待办】查阅`, {variant: 'success'})
             }
         }, {revalidateOnFocus: false})

@@ -1,0 +1,45 @@
+.c4giveaLike {
+    display: flex;
+    justify-content: space-between;
+}
+.c4giveaLike > .content > img{
+        width: 32px;
+    height: 32px;
+    margin-right: 20px;
+}
+.c4giveaLike > .content > div {
+    margin-left: 51px;
+    font-size: 14px;
+    font-weight: 400;
+    letter-spacing: 0px;
+    line-height: 22px;
+    color: rgba(0, 0, 0, 1);
+    vertical-align: top
+}
+.c4giveaLike > .content >span {
+
+    font-size: 14px;
+    font-weight: 400;
+    letter-spacing: 0px;
+    line-height: 22px;
+    color: rgba(0, 0, 0, 1);
+    text-align: center;
+    vertical-align: top;
+
+}
+.c4giveaLike > div:nth-child(2) {
+    width: 57px;
+    height: 57px;
+    opacity: 1;
+    background: rgba(229, 229, 229, 0.5);
+    font-size: 10px;
+    font-weight: 400;
+    letter-spacing: 0px;
+    line-height: 14.48px;
+    color: rgba(0, 0, 0, 1);
+    text-align: left;
+    vertical-align: top;
+    /*text-align: center;*/
+    /*line-height: 57px;*/
+    overflow: hidden;
+}
