@@ -14,6 +14,21 @@ export interface OperateVO {
     action: string
     rollbackUrl: string
 }
+export interface healthyPageParam{
+    statuc?: number,
+    page?: number,  // 前端默认可不传入分页数据， 后面默认0,10
+    size?: number
+}
+export interface healthyParam{
+    fid?:string,
+    fuserId?:string ,
+    theme?:string,  
+    reminderTimeStart?:any | null,
+    reminderTimeEnd?:any | null,
+    type?: number,
+    hdesc?: string,
+    statuc?: number 
+}
 
 
 export class Client {
@@ -145,4 +160,38 @@ export class Client {
     async deleteTopicDao(topicId: string) {
         return await this.axiosClient.delete<Res<OperateVO>>(`inquiry/topics/${topicId}`)
     }
+
+     // 健康提醒管理相关接口开始
+
+    async getHealthy ( {statuc=0 ,page=0,size=10}:healthyPageParam){
+        let url=`healthy/getHealthy?page=${page}&size=${size}`;
+        if(statuc !== 0){
+            url = `${url}&statuc=${statuc}`;
+        }
+        return await this.axiosClient.get(url);
+    }
+
+    async deleteHealthy (id:string ){
+        return await this.axiosClient.delete(`healthy/deleteHealthy?fid=${id}`);
+    }
+
+    async saveHealthy(param :healthyParam){
+        return await this.axiosClient.post('healthy/save',param);
+    }
+    async updateHealthy(param :healthyParam){
+        return await this.axiosClient.post('healthy/update',param);
+    }
+
+    async getCount ( ){
+        return await this.axiosClient.get(`healthy/getCount`);
+    }
+
+    async finishHealthy(fid:string){
+        return await this.axiosClient.get(`healthy/finish?fid=${fid}`)
+    }
+
+    async getHealthyDetail(fid:string){
+        return await this.axiosClient.get(`healthy/detail?fid=${fid}`)
+    }
+    // 健康管理相关接口结束
 }
