@@ -1,22 +1,22 @@
-
-.c1Comment > .character {
+.c1Comment>.character {
     display: flex;
     align-items: center;
 }
 
-.c1Comment > .character > img {
+.c1Comment>.character>img {
     width: 40px;
     height: 40px;
     margin-right: 10px;
+    border-radius: 50%;
 }
 
-.c1Comment > .character > .message {
+.c1Comment>.character>.message {
     display: flex;
     flex-direction: column;
     justify-content: space-around;
 }
 
-.c1Comment > .character > .message > span {
+.c1Comment>.character>.message>span {
     /** 文本1 */
     font-size: 20px;
     font-weight: 400;
@@ -27,21 +27,21 @@
     vertical-align: top;
 }
 
-.c1Comment > .article {
+.c1Comment>.article {
     margin-top: 15px;
     margin-bottom: 15px;
     margin-left: 50px;
 
 }
 
-.c1Comment > .article > img {
+.c1Comment>.article>img {
     width: 247px;
     height: 186px;
     margin-top: 20px;
     display: block;
 }
 
-.c1Comment > .article > span:nth-child(1) {
+.c1Comment>.article>span:nth-child(1) {
     font-size: 20px;
     font-weight: 400;
     letter-spacing: 0px;
@@ -51,7 +51,7 @@
     vertical-align: top;
 }
 
-.c1Comment > .article > span:nth-child(2) {
+.c1Comment>.article>span:nth-child(2) {
     font-size: 20px;
     font-weight: 400;
     letter-spacing: 0px;
@@ -61,7 +61,7 @@
     vertical-align: top;
 }
 
-.c1Comment > .Action {
+.c1Comment>.Action {
     margin-bottom: 15px;
     margin-left: 50px;
     width: 100px;
@@ -69,12 +69,12 @@
     justify-content: space-between;
 }
 
-.c1Comment > .Action > img {
+.c1Comment>.Action>img {
     width: 20px;
     height: 20px;
 }
 
-.c1Comment > span {
+.c1Comment>span {
     font-size: 16px;
     font-weight: 400;
     letter-spacing: 0px;
@@ -104,17 +104,17 @@
     margin-top: 10px;
 }
 
-.c1More > .top {
+.c1More>.top {
     display: flex;
 }
 
-.c1More > .top > img {
+.c1More>.top>img {
     margin-right: 12px;
     width: 32px;
     height: 32px;
 }
 
-.c1More > .top > .nameTime > .name {
+.c1More>.top>.nameTime>.name {
     /** 文本1 */
     font-size: 16px;
     font-weight: 400;
@@ -125,7 +125,7 @@
 
 }
 
-.c1More > .top > .nameTime > .time {
+.c1More>.top>.nameTime>.time {
     font-size: 12px;
     font-weight: 400;
     letter-spacing: 0px;
@@ -133,7 +133,7 @@
     color: rgba(0, 0, 0, 1);
 }
 
-.c1More > .moreComments {
+.c1More>.moreComments {
     font-size: 14px;
     font-weight: 400;
     letter-spacing: 0px;
@@ -154,3 +154,13 @@
     line-height: 23.17px;
     color: rgba(42, 130, 228, 1);
 }
+
+.replyContent {
+    max-height: 150px;
+    overflow-y: scroll;
+}
+
+.userphoto{
+    border-radius: 50%;
+}
+

@@ -10,8 +10,6 @@
     flex-direction: row-reverse;
 }
 
-.c2footerBtn > div:nth-child(2) > img {
-    width: 30px;
-    height: 30px;
-    margin-right: 10px;
+.c2footerBtn>div:nth-child(2) {
+    display: flex;
 }

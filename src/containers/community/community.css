@@ -30,6 +30,7 @@
 .c5title > div:nth-child(2) {
     color: rgba(24, 144, 255, 1);
     font-size: 14px;
+    cursor: pointer;
 }
 
 .c5Card {
@@ -111,9 +112,10 @@
 .c5Additional {
     width: 63px;
     height: 149px;
-    position: absolute;
-    right: 30px;
-    bottom: 100px;
+    position: fixed;
+    z-index: 100;
+    right: 100px;
+    bottom: 150px;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -131,6 +133,7 @@
     display: flex;
     align-items: center;
     justify-content: center;
+    cursor: pointer;
 }
 
 .c5Additional > div > img {
@@ -140,4 +143,8 @@
 
 .c1hand {
     cursor: pointer;
+}
+
+.commentbox {
+    padding-top: 6px;
 }
