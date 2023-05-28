@@ -151,15 +151,15 @@ const Comments: React.FC<Props> = (props) => {
                                     : <ThumbUpAltOutlinedIcon sx={{ color: 'black' }} />
                             }
                         </IconButton>
-                        <div className='commentbox'>{item.realLike_num}</div>
-                        <div className={"c1hand commentbox"} onClick={() => DiscussShow(item.comment_id)}>评论</div>
+                        <div className='c1commentbox'>{item.realLike_num}</div>
+                        <div className={"c1hand c1commentbox"} onClick={() => DiscussShow(item.comment_id)}>评论</div>
                     </div>
                     <span className={"c1hand"} onClick={() => handleReplyShow(true)}>&nbsp;展开更多回复({item.reply_num})</span>
 
                     {/* 展开更多回复 */}
                     {isReplyShow && ( // 根据状态判断是否展开回复框
                         <div>
-                            <div className='replyContent'>
+                            <div className='c1replyContent'>
                                 {replyList.map((Reitem, Reindex) => (
                                     <div key={Reitem.reply_id}>
                                         {item.comment_id === Reitem.comment_id && (  // 根据条件渲染回复框

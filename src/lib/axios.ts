@@ -30,28 +30,6 @@ export interface healthyParam {
     statuc?: number
 }
 
-export interface healthyParam {
-    fid?: string,
-    fuserId?: string,
-    theme?: string,
-    reminderTimeStart?: any | null,
-    reminderTimeEnd?: any | null,
-    type?: number,
-    hdesc?: string,
-    statuc?: number
-}
-
-// export interface communityParam {
-//     fid?: string,
-//     fuserId?: string,
-//     theme?: string,
-//     reminderTimeStart?: any | null,
-//     reminderTimeEnd?: any | null,
-//     type?: number,
-//     hdesc?: string,
-//     statuc?: number
-// }
-
 
 export class Client {
     private readonly axiosClient: AxiosInstance
@@ -245,7 +223,7 @@ export class Client {
     async LikesList(params: any) {
         return await this.axiosClient.post('community/likesList', params);
     }
-    
+
     async AllLikesList(params: any) {
         return await this.axiosClient.post('community/alllikesList', params);
     }

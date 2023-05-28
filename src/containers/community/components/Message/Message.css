@@ -49,6 +49,6 @@
     overflow: hidden;
 }
 
-.content {
+.c4giveaLike>.content {
     display: flex;
 }

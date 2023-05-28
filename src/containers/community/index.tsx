@@ -4,14 +4,9 @@ import Involved from "./components/Involved/Involved"
 import Message from "./components/Message/Message";
 import "./community.css"
 
-// @ts-ignore
 import chatting from "./static/Chatting.png"
-// @ts-ignore
 import board from "./static/board.png"
-// @ts-ignore
 import combined from "./static/Combined Shape@2x.png"
-
-// @ts-ignore
 import email from "./static/email.png"
 import React, { useState } from "react";
 

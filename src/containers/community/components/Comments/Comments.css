@@ -155,12 +155,12 @@
     color: rgba(42, 130, 228, 1);
 }
 
-.replyContent {
+.c1replyContent {
     max-height: 150px;
     overflow-y: scroll;
 }
 
-.userphoto{
+.c1userphoto{
     border-radius: 50%;
 }
 

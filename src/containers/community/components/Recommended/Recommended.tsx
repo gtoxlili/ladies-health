@@ -83,7 +83,7 @@ const Recommended: React.FC<Props> = (props) => {
                     </div>
                     <div>
                         <Upload {...props}>
-                            <img src={Image} alt="" className='upload'></img>
+                            <img src={Image} alt="" className='c42upload'></img>
                         </Upload>
                         <img src={smilingFace} alt="" />
                     </div>
