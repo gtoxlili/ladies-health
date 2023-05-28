@@ -2,12 +2,15 @@
     display: flex;
     justify-content: space-between;
 }
-.c4giveaLike > .content > img{
-        width: 32px;
+
+.c4giveaLike>.content>img {
+    width: 32px;
     height: 32px;
     margin-right: 20px;
+    border-radius: 50%;
 }
-.c4giveaLike > .content > div {
+
+.c4giveaLike>.content>div {
     margin-left: 51px;
     font-size: 14px;
     font-weight: 400;
@@ -16,7 +19,8 @@
     color: rgba(0, 0, 0, 1);
     vertical-align: top
 }
-.c4giveaLike > .content >span {
+
+.c4giveaLike>.content>span {
 
     font-size: 14px;
     font-weight: 400;
@@ -27,7 +31,8 @@
     vertical-align: top;
 
 }
-.c4giveaLike > div:nth-child(2) {
+
+.c4giveaLike>div:nth-child(2) {
     width: 57px;
     height: 57px;
     opacity: 1;
@@ -42,4 +47,8 @@
     /*text-align: center;*/
     /*line-height: 57px;*/
     overflow: hidden;
+}
+
+.content {
+    display: flex;
 }

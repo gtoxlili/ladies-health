@@ -1,50 +1,66 @@
-import { Button, Modal, Input} from 'antd';
-import React, { useState } from 'react';
+import { Button, Modal, Input, notification } from 'antd';
+import React, { useState, useEffect } from 'react';
+import { useLocation, useNavigate } from "react-router-dom";
+import { useClient } from "@lib/hook";
 import "./Message.css"
 
 // @ts-ignore
 import picture from "../../static/picture.png"
 
-const Recommended:React.FC = () => {
-    const [isModalOpen, setIsModalOpen] = useState(false);
-    const showModal = () => {
-        setIsModalOpen(true);
-    };
-    const handleOk = () => {
-        setIsModalOpen(false);
-    };
-    const handleCancel = () => {
-        setIsModalOpen(false );
-    };
+interface Props {
+    Status: boolean;
+    handleShow: () => void;
+    handleClose: () => void;
+}
 
-    const { TextArea } = Input;
+const Recommended: React.FC<Props> = (props) => {
+
+    const { state } = useLocation();
+    const client = useClient();
+
+    const [noficationsList, setNotificationsList] = useState(null)
+
+    useEffect(() => {
+        let params = {
+            id: '1'
+        }
+        client.getNotificationsList(params).then(res => {
+            let data = res.data.data
+            data.map((item: { release_time: string }) => {
+                //格式化时间
+                let dateTime = new Date(item.release_time).toLocaleString();
+                item.release_time = dateTime
+            })
+            setNotificationsList(data)
+            console.log(noficationsList);
+        })
+    }, [state])
+
+    if (noficationsList === null) {
+        return <div>Loading...</div>;
+    }
+
     return (
         <div className='xzcMessage'>
-            <Button type="primary" onClick={showModal}>
-                消息通知
-            </Button>
             <Modal
-
                 className="c2Modal"
                 footer={null}
-                okText="确定" cancelText="取消" title="消息通知" open={isModalOpen} onOk={handleOk} onCancel={handleCancel}>
+                okText="确定" cancelText="取消" title="消息通知" open={props.Status} onOk={props.handleShow} onCancel={props.handleClose}>
                 <div className="c3line"></div>
-                <div className="c4giveaLike">
-                    <div className="content">
-                        <img src={picture} alt=""/>
-                        <span>vouzme点赞了您的帖子</span>
-                        <div>诶呦不错哦</div>
+                {noficationsList.map((item, index) => (
+                    <div className="c4giveaLike">
+                        <div className="content">
+                            <img src={item.user_photo} />
+                            <span>{item.user_name}  {item.content}</span>
+                        </div>
+                        <span> {item.release_time}</span>
                     </div>
-                    <div>
-                        有没有什么女性水电费萨芬撒旦法师打发水电费尴尬示范岗撒法规和友好医院
-                    </div>
-                </div>
+                ))}
                 <div className="c2footerBtn">
                     <div>
-                        <Button>取消</Button>
-                        <Button style={{marginLeft: "10px"}}  type="primary">确认</Button>
+                        <Button onClick={props.handleClose}>取消</Button>
+                        <Button onClick={props.handleClose} style={{ marginLeft: "10px", backgroundColor: "#1677ff", color: "#FFFFFF" }} >确定</Button>
                     </div>
-
                 </div>
             </Modal>
         </div>
